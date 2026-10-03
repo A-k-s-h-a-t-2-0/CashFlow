@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#071108">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Budgets"
+        android:textColor="#E8F5E9"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvBudgetAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Monthly Budget: ₹3,000"
+        android:textColor="#E8F5E9"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvBudgetSpent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Total Spent: ₹0"
+        android:textColor="#A5E6A8"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvBudgetRemaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Remaining: ₹3,000"
+        android:textColor="#A5E6A8"
+        android:textSize="18sp" />
+
+    <ProgressBar
+        android:id="@+id/budgetProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:scaleY="3"
+        android:layout_marginTop="25dp"
+        android:max="100"
+        android:progress="0" />
+
+</LinearLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#071108">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textColor="#E8F5E9"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvSettingsName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Name: Akshat Pandey"
+        android:textColor="#E8F5E9"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvSettingsCurrency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Currency: ₹ Indian Rupee"
+        android:textColor="#A5E6A8"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvSettingsDatabase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Storage: Cloud Firestore"
+        android:textColor="#A5E6A8"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Monthly Budget"
+        android:textColor="#E8F5E9"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etMonthlyBudget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Enter monthly budget"
+        android:inputType="numberDecimal"
+        android:textColor="#E8F5E9"
+        android:textColorHint="#9EAA9F"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnSaveBudget"
+        style="@style/CashFlowButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Save Budget" />
+
+    <TextView
+        android:id="@+id/tvCurrentBudget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Current Budget: ₹3,000"
+        android:textColor="#A5D6A7"
+        android:textSize="18sp" />
+
+</LinearLayout>

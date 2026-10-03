@@ -1,0 +1,21 @@
+<resources>
+
+    <style name="Base.Theme.CashFlow" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- existing theme items -->
+    </style>
+
+    <style name="Theme.CashFlow" parent="Base.Theme.CashFlow">
+    </style>
+
+    <style name="CashFlowButton" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">#365A3A</item>
+        <item name="android:textColor">#E8F5E9</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+    </style>
+
+</resources>

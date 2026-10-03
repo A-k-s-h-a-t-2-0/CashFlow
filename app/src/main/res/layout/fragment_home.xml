@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#071108">
+
+    <!-- Home Content -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Greeting -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi there"
+            android:textColor="#E8F5E9"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvHomeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Akshat Pandey"
+            android:textColor="#A5E6A8"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- Balance -->
+
+        <TextView
+            android:id="@+id/tvHomeBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Balance: ₹0"
+            android:textColor="#E8F5E9"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <!-- Budget -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Budget"
+            android:textColor="#E8F5E9"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvHomeBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="₹0 left of ₹3,000"
+            android:textColor="#A5E6A8"
+            android:textSize="18sp" />
+
+        <ProgressBar
+            android:id="@+id/homeBudgetProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginTop="15dp"
+            android:scaleY="3"
+            android:max="100"
+            android:progress="0" />
+
+        <!-- Recent Transactions -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="Recent Transactions"
+            android:textColor="#E8F5E9"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvRecentTransactions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="No transactions yet"
+            android:textColor="#9EAA9F"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <!-- Fixed Add Transaction Button -->
+
+    <Button
+        android:id="@+id/btnAddTransaction"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#A5D6A7"
+        android:text="+"
+        android:textColor="#16301A"
+        android:textSize="28sp"
+        android:textStyle="normal" />
+
+</FrameLayout>

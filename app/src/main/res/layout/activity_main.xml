@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#071108">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#172419"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnHome"
+            style="@style/CashFlowButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="Home" />
+
+        <Button
+            android:id="@+id/btnTransactions"
+            style="@style/CashFlowButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:text="Transactions"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnBudgets"
+            style="@style/CashFlowButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="Budgets"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnMore"
+            style="@style/CashFlowButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="More"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
