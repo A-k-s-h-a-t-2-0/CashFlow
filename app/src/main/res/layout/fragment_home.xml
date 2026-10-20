@@ -2,6 +2,7 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/homeRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#071108">
@@ -17,6 +18,7 @@
         <!-- Greeting -->
 
         <TextView
+            android:id="@+id/tvHomeGreeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hi there"
@@ -36,19 +38,37 @@
 
         <!-- Balance -->
 
-        <TextView
-            android:id="@+id/tvHomeBalance"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Balance: ₹0"
-            android:textColor="#E8F5E9"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvHomeBalance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Balance: ₹0"
+                android:textColor="#E8F5E9"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnUpdateHomeBalance"
+                style="@style/CashFlowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:paddingHorizontal="14dp"
+                android:text="Update"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <!-- Budget -->
 
         <TextView
+            android:id="@+id/tvHomeBudgetTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -79,6 +99,7 @@
         <!-- Recent Transactions -->
 
         <TextView
+            android:id="@+id/tvHomeRecentTransactionsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"

@@ -9,15 +9,36 @@
     android:layout_marginBottom="10dp"
     android:background="#172419">
 
-    <!-- Transaction title -->
-    <TextView
-        android:id="@+id/tvTransactionTitle"
+    <!-- Transaction title and Excluded Badge row -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lunch"
-        android:textColor="#E8F5E9"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvTransactionTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lunch"
+            android:textColor="#E8F5E9"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvExcludedBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:text="Excluded from Budget"
+            android:textColor="#FFA726"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
     <!-- Category and date -->
     <TextView

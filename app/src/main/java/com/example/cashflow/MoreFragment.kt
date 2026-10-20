@@ -1,11 +1,17 @@
 package com.example.cashflow
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class MoreFragment : Fragment(R.layout.fragment_more) {
+
+    private lateinit var btnSettings: Button
+    private lateinit var btnCategories: Button
+    private lateinit var btnSpendingSummary: Button
 
     override fun onViewCreated(
         view: View,
@@ -13,15 +19,16 @@ class MoreFragment : Fragment(R.layout.fragment_more) {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnCategories =
-            view.findViewById<Button>(R.id.btnCategories)
+        btnCategories =
+            view.findViewById(R.id.btnCategories)
 
-        val btnSpendingSummary =
-            view.findViewById<Button>(R.id.btnSpendingSummary)
+        btnSpendingSummary =
+            view.findViewById(R.id.btnSpendingSummary)
 
-        // Settings button
-        val btnSettings =
-            view.findViewById<Button>(R.id.btnSettings)
+        btnSettings =
+            view.findViewById(R.id.btnSettings)
+
+        applyTheme(ThemeManager.getTheme(requireContext()))
 
         // Categories button
         btnCategories.setOnClickListener {
@@ -60,6 +67,24 @@ class MoreFragment : Fragment(R.layout.fragment_more) {
                 )
                 .addToBackStack(null)
                 .commit()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isAdded) {
+            applyTheme(ThemeManager.getTheme(requireContext()))
+        }
+    }
+
+    private fun applyTheme(theme: AppTheme) {
+        view?.findViewById<View>(R.id.moreRootLayout)?.setBackgroundColor(theme.bgDark)
+        view?.findViewById<TextView>(R.id.tvMoreHeading)?.setTextColor(theme.textLight)
+
+        val buttons = listOf(btnSettings, btnCategories, btnSpendingSummary)
+        for (btn in buttons) {
+            btn.backgroundTintList = ColorStateList.valueOf(theme.buttonShade)
+            btn.setTextColor(theme.textLight)
         }
     }
 }

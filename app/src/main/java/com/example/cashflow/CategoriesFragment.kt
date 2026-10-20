@@ -1,10 +1,12 @@
 package com.example.cashflow
 
 import android.app.AlertDialog
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -63,7 +65,26 @@ class CategoriesFragment :
             showAddCategoryDialog()
         }
 
+        applyTheme(ThemeManager.getTheme(requireContext()))
         loadCategories()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isAdded) {
+            applyTheme(ThemeManager.getTheme(requireContext()))
+        }
+    }
+
+    private fun applyTheme(theme: AppTheme) {
+        view?.findViewById<View>(R.id.categoriesRootLayout)?.setBackgroundColor(theme.bgDark)
+        view?.findViewById<TextView>(R.id.tvCategoriesHeading)?.setTextColor(theme.textLight)
+        val btnAdd = view?.findViewById<Button>(R.id.btnAddCategory)
+        btnAdd?.backgroundTintList = ColorStateList.valueOf(theme.buttonShade)
+        btnAdd?.setTextColor(theme.textLight)
+        if (::adapter.isInitialized) {
+            adapter.notifyDataSetChanged()
+        }
     }
 
     private fun loadCategories() {

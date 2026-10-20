@@ -1,30 +1,32 @@
 package com.example.cashflow
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var mainRootLayout: LinearLayout
+    private lateinit var bottomNavLayout: LinearLayout
 
     private lateinit var btnHome: Button
     private lateinit var btnTransactions: Button
     private lateinit var btnBudgets: Button
     private lateinit var btnMore: Button
 
-    private val selectedColor =
-        Color.parseColor("#A5D6A7")
+    private var currentSelectedButton: Button? = null
 
-    private val unselectedColor =
-        Color.parseColor("#365A3A")
+    private var selectedColor = 0
+    private var unselectedColor = 0
+    private var selectedTextColor = 0
+    private var unselectedTextColor = 0
 
-    private val selectedTextColor =
-        Color.parseColor("#16301A")
-
-    private val unselectedTextColor =
-        Color.parseColor("#E8F5E9")
+    private val themeListener: (AppTheme) -> Unit = { theme ->
+        applyTheme(theme)
+    }
 
     override fun onCreate(
         savedInstanceState: Bundle?
@@ -34,6 +36,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(
             R.layout.activity_main
         )
+
+        mainRootLayout =
+            findViewById(R.id.mainRootLayout)
+
+        bottomNavLayout =
+            findViewById(R.id.bottomNavLayout)
 
         btnHome =
             findViewById(R.id.btnHome)
@@ -46,6 +54,9 @@ class MainActivity : AppCompatActivity() {
 
         btnMore =
             findViewById(R.id.btnMore)
+
+        ThemeManager.addListener(themeListener)
+        applyTheme(ThemeManager.getTheme(this))
 
         if (savedInstanceState == null) {
 
@@ -103,6 +114,33 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        applyTheme(ThemeManager.getTheme(this))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ThemeManager.removeListener(themeListener)
+    }
+
+    private fun applyTheme(theme: AppTheme) {
+        mainRootLayout.setBackgroundColor(theme.bgDark)
+        bottomNavLayout.setBackgroundColor(theme.cardDark)
+
+        window.statusBarColor = theme.bgDark
+        window.navigationBarColor = theme.cardDark
+
+        selectedColor = theme.lightShade
+        unselectedColor = theme.buttonShade
+        selectedTextColor = theme.textDark
+        unselectedTextColor = theme.textLight
+
+        currentSelectedButton?.let {
+            selectButton(it)
+        }
+    }
+
     private fun loadFragment(
         fragment: Fragment
     ) {
@@ -119,6 +157,7 @@ class MainActivity : AppCompatActivity() {
     private fun selectButton(
         selectedButton: Button
     ) {
+        currentSelectedButton = selectedButton
 
         val buttons =
             listOf(

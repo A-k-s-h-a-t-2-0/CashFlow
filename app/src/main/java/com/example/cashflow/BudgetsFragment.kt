@@ -1,5 +1,6 @@
 package com.example.cashflow
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -54,7 +55,25 @@ class BudgetsFragment :
                 R.id.budgetProgress
             )
 
+        applyTheme(ThemeManager.getTheme(requireContext()))
         loadBudget()
+    }
+
+    private fun applyTheme(theme: AppTheme) {
+        view?.findViewById<View>(R.id.budgetsRootLayout)?.setBackgroundColor(theme.bgDark)
+        view?.findViewById<TextView>(R.id.tvBudgetsHeading)?.setTextColor(theme.textLight)
+        if (::tvBudgetAmount.isInitialized) {
+            tvBudgetAmount.setTextColor(theme.textLight)
+        }
+        if (::tvBudgetSpent.isInitialized) {
+            tvBudgetSpent.setTextColor(theme.lightShade)
+        }
+        if (::tvBudgetRemaining.isInitialized) {
+            tvBudgetRemaining.setTextColor(theme.lightShade)
+        }
+        if (::budgetProgress.isInitialized) {
+            budgetProgress.progressTintList = ColorStateList.valueOf(theme.lightShade)
+        }
     }
 
     private fun loadBudget() {
@@ -78,7 +97,6 @@ class BudgetsFragment :
                 loadBudgetData()
             }
             .addOnFailureListener {
-
                 monthlyBudget = 3000.0
 
                 tvBudgetAmount.text =
@@ -111,7 +129,8 @@ class BudgetsFragment :
 
                     if (
                         transaction.type == "expense" &&
-                        transaction.date.startsWith(currentMonth)
+                        transaction.date.startsWith(currentMonth) &&
+                        !transaction.excludedFromBudget
                     ) {
 
                         totalSpent +=
@@ -170,8 +189,11 @@ class BudgetsFragment :
 
         super.onResume()
 
-        if (::db.isInitialized) {
-            loadBudget()
+        if (isAdded) {
+            applyTheme(ThemeManager.getTheme(requireContext()))
+            if (::db.isInitialized) {
+                loadBudget()
+            }
         }
     }
 }

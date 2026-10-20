@@ -2,29 +2,36 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/addTransactionScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="#071108">
 
     <LinearLayout
+        android:id="@+id/addTransactionContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp">
 
         <TextView
+            android:id="@+id/tvAddTransactionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Transaction"
             android:textColor="#E8F5E9"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
+        <!-- Segmented Type Selector -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal">
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="#16301A"
+            android:orientation="horizontal"
+            android:padding="3dp">
 
             <Button
                 android:id="@+id/btnExpense"
@@ -44,34 +51,37 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/etAmount"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="25dp"
-            android:hint="Amount"
-            android:inputType="numberDecimal"
-            android:textColor="#E8F5E9"
-            android:textColorHint="#9EAA9F"
-            android:textSize="28sp" />
-
+        <!-- Date selector -->
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="48dp"
             android:layout_marginTop="20dp"
             android:gravity="center_vertical"
-            android:text="Today"
+            android:text="Select Date"
+            android:textColor="#A5E6A8"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Amount -->
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:hint="Amount (₹)"
+            android:inputType="numberDecimal"
             android:textColor="#E8F5E9"
-            android:textSize="18sp" />
+            android:textColorHint="#9EAA9F"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/etTitle"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
             android:hint="Title"
-            android:inputType="text"
+            android:inputType="textCapSentences"
             android:textColor="#E8F5E9"
             android:textColorHint="#9EAA9F"
             android:textSize="17sp" />
@@ -106,12 +116,21 @@
             android:clipToPadding="false"
             android:padding="4dp" />
 
+        <CheckBox
+            android:id="@+id/cbExcludeFromBudget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Exclude from budget expense"
+            android:textColor="#E8F5E9"
+            android:textSize="16sp" />
+
         <Button
             android:id="@+id/btnSaveTransaction"
             style="@style/CashFlowButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="24dp"
             android:text="SAVE TRANSACTION"
             android:textSize="16sp" />
 

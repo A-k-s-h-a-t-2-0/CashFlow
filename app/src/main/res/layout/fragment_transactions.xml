@@ -2,6 +2,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/transactionsRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,6 +10,7 @@
     android:padding="24dp">
 
     <TextView
+        android:id="@+id/tvTransactionsHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Transactions"
@@ -16,12 +18,27 @@
         android:textSize="28sp"
         android:textStyle="bold" />
 
+    <!-- Month Filter Chips for Bifurcation -->
+    <HorizontalScrollView
+        android:id="@+id/hsvMonthFilters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/layoutMonthChips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTransactions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:clipToPadding="false"
         android:paddingBottom="10dp" />
 

@@ -10,6 +10,7 @@ data class Transaction(
     val type: String = "expense",
     val date: String = "",
     val timestamp: String = "",
+    var excludedFromBudget: Boolean = false,
 
     @get:Exclude
     var documentId: String = ""

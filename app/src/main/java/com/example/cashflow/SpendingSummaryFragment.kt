@@ -33,11 +33,42 @@ class SpendingSummaryFragment :
         tvSummaryBalance =
             view.findViewById(R.id.tvSummaryBalance)
 
+        applyTheme(ThemeManager.getTheme(requireContext()))
         loadSummary()
     }
 
-    private fun loadSummary() {
+    private fun applyTheme(theme: AppTheme) {
+        view?.findViewById<View>(R.id.spendingSummaryRootLayout)?.setBackgroundColor(theme.bgDark)
+        view?.findViewById<TextView>(R.id.tvSpendingSummaryHeading)?.setTextColor(theme.textLight)
+        if (::tvSummaryIncome.isInitialized) {
+            tvSummaryIncome.setTextColor(theme.lightShade)
+        }
+        if (::tvSummaryExpense.isInitialized) {
+            tvSummaryExpense.setTextColor(theme.textLight)
+        }
+        if (::tvSummaryBalance.isInitialized) {
+            tvSummaryBalance.setTextColor(theme.lightShade)
+        }
+    }
 
+    private fun loadSummary() {
+        db.collection("settings")
+            .document("balance")
+            .get()
+            .addOnSuccessListener { balDoc ->
+                val initialBalance = if (balDoc.exists()) {
+                    balDoc.getDouble("initialBalance") ?: 0.0
+                } else {
+                    0.0
+                }
+                loadTransactions(initialBalance)
+            }
+            .addOnFailureListener {
+                loadTransactions(0.0)
+            }
+    }
+
+    private fun loadTransactions(initialBalance: Double) {
         db.collection("transactions")
             .get()
             .addOnSuccessListener { result ->
@@ -65,7 +96,7 @@ class SpendingSummaryFragment :
                 }
 
                 val balance =
-                    totalIncome - totalExpense
+                    initialBalance + (totalIncome - totalExpense)
 
                 tvSummaryIncome.text =
                     "Total Income: ₹${formatAmount(totalIncome)}"
@@ -104,8 +135,11 @@ class SpendingSummaryFragment :
     override fun onResume() {
         super.onResume()
 
-        if (::db.isInitialized) {
-            loadSummary()
+        if (isAdded) {
+            applyTheme(ThemeManager.getTheme(requireContext()))
+            if (::db.isInitialized) {
+                loadSummary()
+            }
         }
     }
 }

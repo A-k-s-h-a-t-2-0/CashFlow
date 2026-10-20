@@ -2,6 +2,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,6 +15,7 @@
         android:layout_weight="1" />
 
     <LinearLayout
+        android:id="@+id/bottomNavLayout"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:background="#172419"

@@ -1,83 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingsScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
+    android:fillViewport="true"
     android:background="#071108">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        android:textColor="#E8F5E9"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvSettingsName"
+    <LinearLayout
+        android:id="@+id/settingsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="Name: Akshat Pandey"
-        android:textColor="#E8F5E9"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <TextView
-        android:id="@+id/tvSettingsCurrency"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Currency: ₹ Indian Rupee"
-        android:textColor="#A5E6A8"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tvSettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textColor="#E8F5E9"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvSettingsDatabase"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Storage: Cloud Firestore"
-        android:textColor="#A5E6A8"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tvSettingsName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Name: Akshat Pandey"
+            android:textColor="#E8F5E9"
+            android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Monthly Budget"
-        android:textColor="#E8F5E9"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvSettingsCurrency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Currency: ₹ Indian Rupee"
+            android:textColor="#A5E6A8"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/etMonthlyBudget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="Enter monthly budget"
-        android:inputType="numberDecimal"
-        android:textColor="#E8F5E9"
-        android:textColorHint="#9EAA9F"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tvSettingsDatabase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Storage: Cloud Firestore"
+            android:textColor="#A5E6A8"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btnSaveBudget"
-        style="@style/CashFlowButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Save Budget" />
+        <!-- Option Buttons: Manage Budget, Update Balance, Themes -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvCurrentBudget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Current Budget: ₹3,000"
-        android:textColor="#A5D6A7"
-        android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal">
 
-</LinearLayout>
+                <Button
+                    android:id="@+id/btnOptionManageBudget"
+                    style="@style/CashFlowButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="Manage Budget"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/btnOptionUpdateBalance"
+                    style="@style/CashFlowButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="Update Balance"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnOptionThemes"
+                style="@style/CashFlowButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:text="Themes"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- Manage Budget Section -->
+        <LinearLayout
+            android:id="@+id/layoutManageBudget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvManageBudgetTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monthly Budget"
+                android:textColor="#E8F5E9"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCurrentBudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Current Budget: ₹3,000"
+                android:textColor="#A5D6A7"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etMonthlyBudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:hint="Enter monthly budget"
+                android:inputType="numberDecimal"
+                android:textColor="#E8F5E9"
+                android:textColorHint="#9EAA9F"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnSaveBudget"
+                style="@style/CashFlowButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="18dp"
+                android:text="Save Budget" />
+
+        </LinearLayout>
+
+        <!-- Update Balance Section -->
+        <LinearLayout
+            android:id="@+id/layoutUpdateBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvUpdateBalanceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Balance"
+                android:textColor="#E8F5E9"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCurrentBalanceSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Current Balance: ₹0"
+                android:textColor="#A5D6A7"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etNewBalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:hint="Enter new balance"
+                android:inputType="numberDecimal|numberSigned"
+                android:textColor="#E8F5E9"
+                android:textColorHint="#9EAA9F"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnSaveBalance"
+                style="@style/CashFlowButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="18dp"
+                android:text="Save Balance" />
+
+        </LinearLayout>
+
+        <!-- Themes Section -->
+        <LinearLayout
+            android:id="@+id/layoutThemes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvThemesHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Theme (VIBGYOR)"
+                android:textColor="#E8F5E9"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/rgThemes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp">
+
+                <RadioButton
+                    android:id="@+id/rbViolet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp"
+                    android:text="Violet"
+                    android:textColor="#E8F5E9"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/rbIndigo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp"
+                    android:text="Indigo"
+                    android:textColor="#E8F5E9"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/rbBlue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp"
+                    android:text="Blue"
+                    android:textColor="#E8F5E9"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/rbGreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp"
+                    android:text="Green (Default)"
+                    android:textColor="#E8F5E9"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/rbYellow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp"
+                    android:text="Yellow"
+                    android:textColor="#E8F5E9"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/rbOrange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp"
+                    android:text="Orange"
+                    android:textColor="#E8F5E9"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/rbRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp"
+                    android:text="Red"
+                    android:textColor="#E8F5E9"
+                    android:textSize="17sp" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
