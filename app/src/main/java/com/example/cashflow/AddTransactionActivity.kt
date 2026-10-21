@@ -219,6 +219,7 @@ class AddTransactionActivity : AppCompatActivity() {
                 day
             )
 
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
         datePickerDialog.show()
     }
 
@@ -284,6 +285,12 @@ class AddTransactionActivity : AppCompatActivity() {
             val parts = docId.split("__")
             if (parts.size >= 3) {
                 timePart = parts[2]
+            } else {
+                val timeRegex = Regex("""\b(\d{2}:\d{2})\b""")
+                val match = timeRegex.find(docId)
+                if (match != null) {
+                    timePart = match.groupValues[1]
+                }
             }
         }
 
@@ -351,11 +358,20 @@ class AddTransactionActivity : AppCompatActivity() {
 
         val finalDate = if (selectedDate.isNotEmpty()) selectedDate else currentDate
 
+        // Guard against future dates
+        try {
+            val parsedFinalDate = dateFormat.parse(finalDate)
+            val parsedCurrentDate = dateFormat.parse(currentDate)
+            if (parsedFinalDate != null && parsedCurrentDate != null && parsedFinalDate.after(parsedCurrentDate)) {
+                Toast.makeText(this, "Transaction date cannot be in the future", Toast.LENGTH_SHORT).show()
+                return
+            }
+        } catch (_: Exception) {}
+
         val finalTimestamp = if (isEditMode) {
             buildTimestampForDate(finalDate, selectedTimestamp, documentIdToUpdate)
         } else {
-            val timestampFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
-            timestampFormat.format(Date())
+            buildTimestampForDate(finalDate, "", "")
         }
 
         val transaction = Transaction(
@@ -496,9 +512,15 @@ class AddTransactionActivity : AppCompatActivity() {
                     ).show()
                 }
         } else {
-            val userName = "Akshat_Pandey"
-            val documentDateFormat = SimpleDateFormat("yyyy-MM-dd__HH:mm", Locale.getDefault())
-            val documentId = "${userName}__${documentDateFormat.format(Date())}"
+            val userName = "Steve"
+            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val currentTime = timeFormat.format(Date())
+            val documentDate = if (transaction.date.isNotEmpty()) {
+                transaction.date
+            } else {
+                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+            }
+            val documentId = "${userName}__${documentDate}__${currentTime}"
 
             db.collection("transactions")
                 .document(documentId)

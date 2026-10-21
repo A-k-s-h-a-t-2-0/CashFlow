@@ -301,6 +301,24 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         return d
                     }
                 } catch (_: Exception) {}
+            } else {
+                try {
+                    val regex = Regex("""(\d{4}-\d{2}-\d{2})[_\s]+(\d{2}:\d{2})""")
+                    val match = regex.find(t.documentId)
+                    if (match != null) {
+                        val d = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse("${match.groupValues[1]} ${match.groupValues[2]}")
+                        if (d != null) {
+                            if (anchorDate != null) {
+                                val calAnchor = Calendar.getInstance().apply { time = anchorDate }
+                                val calDoc = Calendar.getInstance().apply { time = d }
+                                calAnchor.set(Calendar.HOUR_OF_DAY, calDoc.get(Calendar.HOUR_OF_DAY))
+                                calAnchor.set(Calendar.MINUTE, calDoc.get(Calendar.MINUTE))
+                                return calAnchor.time
+                            }
+                            return d
+                        }
+                    }
+                } catch (_: Exception) {}
             }
         }
 
